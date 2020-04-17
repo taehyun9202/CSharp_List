@@ -1,0 +1,37 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model List<PirateMember>
+<div class="jumbotron">
+    <h1>Priate</h1>
+</div>
+<a href="/add" class="btn btn-info">Add Pirate!</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Pirate Role</th>
+            <th>Joined Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (PirateMember pirate in Model)
+        {
+            <tr>
+                @* <td><a href="/@pirate.PirateId">@pirate.Name</a></td> *@
+                <td><a asp-action="Show" asp-route-CrewID="@pirate.PirateId">@pirate.Name</a></td> 
+                <td>@pirate.Age</td>
+                <td>@pirate.PirateRole</td>
+                <td>@pirate.CreatedAt.ToShortDateString() || @pirate.CreatedAt.ToShortTimeString()</td>
+                <td>
+                    <a asp-action="Edit" asp-route-CrewID="@pirate.PirateId" class="btn btn-warning btn-sm">Edit</a>
+                    <a asp-action="Delete" asp-route-CrewID="@pirate.PirateId" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
